@@ -20,9 +20,7 @@ public class testeCliente {
 	public void testarobterValorComDesconto() {
 		when(pedido.obterValorBase()).thenReturn(100.00);
 		cliente = new Cliente(10);
-		
 		double result = cliente.obterValorComDesconto(pedido);
-		
 		Assert.assertEquals(result,90.00);
 	}
 }
