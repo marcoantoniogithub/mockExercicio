@@ -1,14 +1,15 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Pedido {
 	
-	public ArrayList<LinhaPedido> linhapedidos;
+	public List<LinhaPedido> linhapedidos;
 	public Cliente cliente;
 	public double valorSemDesconto;
+	public double valorComDesconto;
 
-	public Pedido(ArrayList<LinhaPedido> linhapedidos, Cliente cliente) {
+	public Pedido(List<LinhaPedido> linhapedidos, Cliente cliente) {
 		super();
 		this.linhapedidos = linhapedidos;
 		this.cliente = cliente;
@@ -19,7 +20,14 @@ public class Pedido {
 			this.valorSemDesconto += linhaPedido.calcularPreco();
 		}
 		
-		double valorComDesconto = cliente.obterValorComDesconto(this);
+		if(this.valorSemDesconto <= 0.0) {
+			this.valorSemDesconto = 0.0;
+		}
+		
+		this.valorComDesconto = cliente.obterValorComDesconto(this);
+		if(this.valorComDesconto <= 0.0) {
+			this.valorComDesconto = 0.0;
+		}
 		System.out.println("Valor com Desconto: "+valorComDesconto);
 	}
 	

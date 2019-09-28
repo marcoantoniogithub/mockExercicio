@@ -18,6 +18,12 @@ public class Produto {
 	}
 	
 	public double obterPreco(int quantidade){
+		if(quantidade <= 0) {
+			return 0.0;
+		}
+		if(preco <= 0) {
+			return 0.0;
+		}
 		return  preco * quantidade;
 	}
 }
